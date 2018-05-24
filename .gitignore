@@ -39,3 +39,4 @@ testem.log
 Thumbs.db
 
 *-lock.json
+/docs
