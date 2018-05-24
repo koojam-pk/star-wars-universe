@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+$background-color: #000;
+
+body {
+  background: $background-color;
+  font-family: helvetica neue, Helvetica, Arial, sans-serif;
+}
+
+/* This class is writtern here due to the some labels are inserted into the DOM during runtime.
+ * Due to this situation, those labels are not able to pick up the style setting
+ */
+.card-label {
+  color: #aaa;
+}

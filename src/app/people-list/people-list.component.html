@@ -1,0 +1,69 @@
+<section class="people-container">
+  <div class="spinner-container"  *ngIf="!(this.allPeople$ | async)">
+    <mat-spinner diameter="50" strokeWidth="6"></mat-spinner>
+  </div>
+  <mat-paginator #paginator
+    [length]="peopleCount$ | async" [pageIndex]="0" [pageSize]="10">
+  </mat-paginator>
+  <mat-accordion displayMode="flat" multi class="mat-table">
+    <section matSort class="mat-elevation-z2 mat-header-row">
+      <span class="mat-header-cell">Name</span>
+      <span class="mat-header-cell">Birth Year</span>
+      <span class="mat-header-cell">Eye Color</span>
+      <span class="mat-header-cell">Gender</span>
+      <span class="mat-header-cell mat-cell-show">Hair Color</span>
+      <span class="mat-header-cell mat-cell-show">Height</span>
+      <span class="mat-header-cell mat-cell-show">Mass</span>
+      <span class="mat-header-cell mat-cell-show">Skin Color</span>
+    </section>
+
+    <mat-expansion-panel *ngFor="let item of this.allPeople$ | async; let i = index"
+      [expanded]="step === i" (opened)="setStep(i)">
+      <mat-expansion-panel-header class="mat-row">
+        <span class="mat-cell">{{item.name}}</span>
+        <span class="mat-cell">{{item.birth_year}}</span>
+        <span class="mat-cell">{{item.eye_color | capitalizefirst}}</span>
+        <span class="mat-cell">{{item.gender | capitalizefirst}}</span>
+        <span class="mat-cell mat-cell-show">{{item.hair_color | capitalizefirst}}</span>
+        <span class="mat-cell mat-cell-show">{{item.height}}</span>
+        <span class="mat-cell mat-cell-show">{{item.mass}}</span>
+        <span class="mat-cell mat-cell-show">{{item.skin_color | capitalizefirst}}</span>
+      </mat-expansion-panel-header>
+      <div class="detail">
+        <!-- pre>{{item | json}}</pre -->
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>{{item.name}}</mat-card-title>
+            <mat-card-subtitle>{{item.gender | capitalizefirst}} | {{item.birth_year}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxFlexFill fxLayoutAlign="start stretch"
+              class="flex-row">
+              <div fxFlex><span class="card-label">Height: </span>{{item.height}}</div>
+              <div fxflex><span class="card-label">Mass: </span>{{item.mass}}</div>
+              <div fxFlex><span class="card-label">Eye Color: </span>{{item.eye_color | capitalizefirst}}</div>
+              <div fxFlex><span class="card-label">Skin Color: </span>{{item.skin_color | capitalizefirst}}</div>
+              <div fxFlex><span class="card-label">Hair Color: </span>{{item.hair_color | capitalizefirst}}</div>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="flex-row">
+              <div fxFlex><span class="card-label">Home World: </span>{{item.homeworld}}</div>
+              <div fxFlex><span class="card-label">URL: </span>{{item.url}}</div>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="flex-row">
+              <div fxFlex><span class="card-label">Created: </span>{{item.created | date: 'yyyy-MM-dd HH:mm:ss zzzz'}}</div>
+              <div fxFlex><span class="card-label">Edited: </span>{{item.edited | date: 'yyyy-MM-dd HH:mm:ss zzzz'}}</div>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="flex-row">
+              <div fxFlex [innerHTML]="flatContent(item.films, 'Films')"></div>
+              <div fxFlex [innerHTML]="flatContent(item.species, 'Species')"></div>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="flex-row">
+              <div fxFlex [innerHTML]="flatContent(item.vehicles, 'Vehicles')"></div>
+              <div fxFlex [innerHTML]="flatContent(item.starships, 'Starships')"></div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</section>

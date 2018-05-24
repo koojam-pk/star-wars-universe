@@ -1,0 +1,151 @@
+$font-color: rgba(247, 226, 51, .75);
+$font-color-disabled: rgba(247, 226, 51, .26);
+$font-weight: 200;
+$header-font-weight: 300;
+$bg-color: #000;
+$icon-color: rgba(247, 226, 51, .54);
+$hover-bg-color: rgba(105,151,211, 0.4);
+$hover-color: #fff;
+$card-bg-color: rgba(255, 255, 255, 0.3);
+
+$header-bg-color: #05326D;
+
+.mat-spinner {
+  margin-left: auto;
+  margin-right: auto;
+  top: 15.63rem;
+}
+
+.mat-paginator,
+.mat-expansion-panel {
+  background: $bg-color;
+  color: $font-color;
+  font-weight: $font-weight;
+}
+
+::ng-deep .mat-icon-button[disabled][disabled] {
+  color: $font-color-disabled;
+}
+
+.mat-accordion .mat-header-row {
+  padding-left: 1.5rem;
+  padding-right: 2rem;
+  border-bottom: none;
+  background: $header-bg-color;
+}
+
+.mat-table {
+  display: block;
+}
+
+.mat-header-row {
+  min-height: 3.5rem;
+}
+
+.mat-header-cell {
+  color: #bbb;
+  font-weight: $header-font-weight;
+  font-size: 0.9rem;
+}
+
+.mat-header-row,
+.mat-row {
+  display: flex;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  align-items: center;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+
+  &::after {
+    display: inline-block;
+    min-height: inherit;
+    content: '';
+  }
+}
+
+/* Workaround for https://goo.gl/pFmjJD in IE 11. Adds a pseudo
+// element that will stretch the row the correct height. See:
+// https://connect.microsoft.com/IE/feedback/details/802625*/
+/*.mat-header-row::after,
+.mat-row::after {
+  display: inline-block;
+  min-height: inherit;
+  content: '';
+}*/
+
+.mat-row {
+  min-height: 3rem;
+}
+
+.mat-header-cell,
+.mat-cell {
+  flex: 1;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+.mat-footer-cell,
+.mat-cell {
+  color: $font-color;
+  font-weight: $font-weight;
+}
+
+.mat-cell {
+  font-size: .8rem;
+}
+
+::ng-deep .mat-expansion-indicator::after {
+  color: $icon-color;
+}
+
+.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled=true]).cdk-keyboard-focused,
+.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled=true]).cdk-program-focused,
+.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled=true]):hover {
+  background: $hover-bg-color;
+  color: $hover-color;
+  cursor: pointer;
+}
+
+.detail {
+  line-height: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.mat-card {
+  background: $card-bg-color;
+  color: #ddd;
+  font-weight: $font-weight;
+
+  .mat-card-subtitle {
+    color: #bbb;
+    font-weight: $font-weight;
+    font-size: 0.85rem;
+  }
+}
+
+::ng-deep .content-alignment-left > figure {
+  justify-content: flex-start!important;
+}
+
+/* Customise Class */
+/* To avoid space appearing when spinner is active */
+.spinner-container {
+  height: 0;
+}
+
+.mat-cell-show {
+  display: none;
+}
+
+.flex-row {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+@media (min-width: 37.5rem) {
+  .mat-cell-show {
+    display: block;
+  }
+}
