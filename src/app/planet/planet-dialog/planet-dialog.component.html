@@ -1,0 +1,43 @@
+<section class="planet-dialog-container">
+  <div class="spinner-container"  *ngIf="!(planet$ | async)">
+    <mat-spinner diameter="50" strokeWidth="6"></mat-spinner>
+  </div>
+  <div *ngIf="(planet$ | async)">
+    <div class="close-container" (click)="onNoClick()"><mat-icon>close</mat-icon></div>
+    <h2>{{(planet$ | async).name}}</h2>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxFlexFill fxLayoutAlign="start stretch"
+      class="flex-row">
+      <div fxFlex><span class="text-label">Diameter: </span>{{(planet$ | async).diameter | number}}</div>
+      <div fxflex><span class="text-label">Rotation Period: </span>{{(planet$ | async).rotation_period | number: '1.0-2'}}</div>
+      <div fxFlex><span class="text-label">Orbital Period: </span>{{(planet$ | async).orbital_period | number: '1.0-2'}}</div>
+      <div fxFlex><span class="text-label">Gravity: </span>{{(planet$ | async).gravity}}</div>
+    </div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxFlexFill fxLayoutAlign="start stretch"
+      class="flex-row">
+      <div fxFlex><span class="text-label">Population: </span>{{(planet$ | async).population}}</div>
+      <div fxFlex><span class="text-label">Climate: </span>{{(planet$ | async).climate | capitalizefirst}}</div>
+      <div fxflex><span class="text-label">Terrain: </span>{{(planet$ | async).terrain | capitalizefirst}}</div>
+      <div fxFlex><span class="text-label">Surface Water: </span>{{(planet$ | async).surface_water}}</div>
+    </div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="flex-row">
+      <div fxFlex>
+        <span class="text-label">Residents:</span><br>
+        <div *ngFor="let element of (planet$ | async)?.residents">
+          <a mat-button [routerLink]="['/people']" [queryParams]="{url: element}"
+          class="a-on-the-run" (click)="onNoClick()">{{element}}</a>
+        </div>
+      </div>
+      <div fxFlex>
+        <span class="text-label">Films:</span><br>
+        <div *ngFor="let element of (planet$ | async)?.films">
+          <a mat-button [routerLink]="['/film']" [queryParams]="{url: element}"
+          class="a-on-the-run" (click)="onNoClick()">{{element}}</a>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="date-container">
+      <div fxFlex><span class="text-label">Created: </span>{{(planet$ | async)?.created | date: 'yyyy-MM-dd HH:mm:ss zzzz'}}</div>
+      <div fxFlex><span class="text-label">Edited: </span>{{(planet$ | async)?.edited | date: 'yyyy-MM-dd HH:mm:ss zzzz'}}</div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,47 @@
+/* .flex-row {
+  font-weight: 200;
+  font-size: 0.85rem;
+}
+
+.a-on-the-run {
+  text-decoration: underline;
+  color: #aaa;
+} */
+
+.planet-container {
+  color: #eee;
+  font-weight: 200;
+  box-sizing: border-box;
+  padding: 2rem;
+
+  h3, h4 {
+    font-weight: 200;
+  }
+
+  h4 {
+    color: #ccc;
+  }
+
+  .flex-row {
+    font-weight: 200;
+    font-size: 0.85rem;
+  }
+
+  .button-link {
+    background: transparent;
+    color: #ddd;
+    border: none;
+    font-weight: 200;
+    font-size: 0.85rem;
+    text-decoration: underline;
+    color: #ccc;
+
+    &:hover,
+    &:active {
+      color: #eee;
+      font-weight: 350;
+      cursor: pointer;
+    }
+
+  }
+}

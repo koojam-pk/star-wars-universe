@@ -1,0 +1,61 @@
+<section class="people-container">
+  <div class="spinner-container"  *ngIf="!(people$ | async)">
+    <mat-spinner diameter="50" strokeWidth="6"></mat-spinner>
+  </div>
+  <div *ngIf="(people$ | async)">
+    <a mat-button class="a-on-the-run" (click)="onBackClick()">Back</a>
+    <h3>{{(people$ | async).name}}</h3>
+    <h4>{{(people$ | async).gender | capitalizefirst}} | {{(people$ | async).birth_year}}</h4>
+    <div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxFlexFill fxLayoutAlign="start stretch"
+        class="flex-row">
+        <div fxFlex><span class="text-label">Height: </span>{{(people$ | async).height}}</div>
+        <div fxflex><span class="text-label">Mass: </span>{{(people$ | async).mass}}</div>
+        <div fxFlex><span class="text-label">Eye Color: </span>{{(people$ | async).eye_color | capitalizefirst}}</div>
+        <div fxFlex><span class="text-label">Skin Color: </span>{{(people$ | async).skin_color | capitalizefirst}}</div>
+        <div fxFlex><span class="text-label">Hair Color: </span>{{(people$ | async).hair_color | capitalizefirst}}</div>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="flex-row">
+        <div fxFlex><span class="text-label">Home World: </span>
+          <button mat-button-link #item value="{{(people$ | async).homeworld}}"
+            (click)="onPlanetClick(item.value)" class="button-link">{{(people$ | async).homeworld}}</button>
+        </div>
+        <div fxFlex class="no-link"><span class="text-label">URL: </span>{{(people$ | async).url}}</div>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="flex-row">
+        <div fxFlex>
+          <span class="text-label">Films:</span><br>
+          <div *ngFor="let element of (people$ | async).films">
+            <a mat-button [routerLink]="['/film']" [queryParams]="{url: element}"
+              class="a-on-the-run">{{element}}</a>
+          </div>
+        </div>
+        <div fxFlex>
+          <span class="text-label">Species:</span><br>
+          <a mat-button *ngFor="let element of (people$ | async).species" class="a-on-the-run"
+            (click)="onSpeciesClick(element)">{{element}}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="flex-row">
+        <div fxFlex>
+          <span class="text-label">Vehicles:</span><br>
+          <div *ngFor="let element of (people$ | async).vehicles">
+            <a mat-button [routerLink]="['/vehicle']" [queryParams]="{url: element}"
+              class="a-on-the-run">{{element}}</a>
+          </div>
+        </div>
+        <div fxFlex>
+          <span class="text-label">Starships:</span><br>
+          <div *ngFor="let element of (people$ | async).starships">
+            <a mat-button [routerLink]="['/starship']" [queryParams]="{url: element}"
+            class="a-on-the-run">{{element}}</a>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="date-container">
+        <div fxFlex><span class="text-label">Created: </span>{{(people$ | async).created | date: 'yyyy-MM-dd HH:mm:ss zzzz'}}</div>
+        <div fxFlex><span class="text-label">Edited: </span>{{(people$ | async).edited | date: 'yyyy-MM-dd HH:mm:ss zzzz'}}</div>
+      </div>
+    </div>
+  </div>
+</section>

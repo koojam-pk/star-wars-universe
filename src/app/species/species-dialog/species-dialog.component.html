@@ -1,0 +1,50 @@
+<section class="species-dialog-container">
+    <div class="spinner-container"  *ngIf="!(species$ | async)">
+      <mat-spinner diameter="50" strokeWidth="6"></mat-spinner>
+    </div>
+    <div *ngIf="(species$ | async)">
+      <div class="close-container" (click)="onNoClick()"><mat-icon>close</mat-icon></div>
+      <h2>{{(species$ | async).name}}</h2>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxFlexFill fxLayoutAlign="start stretch"
+        class="flex-row">
+        <div fxFlex><span class="text-label">Classification: </span>{{(species$ | async).classification | capitalizefirst}}</div>
+        <div fxflex><span class="text-label">Designation: </span>{{(species$ | async).designation | capitalizefirst}}</div>
+        <div fxFlex><span class="text-label">Language: </span>{{(species$ | async).language | capitalizefirst}}</div>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxFlexFill fxLayoutAlign="start stretch"
+        class="flex-row">
+        <div fxFlex><span class="text-label">Skin Colors: </span>{{(species$ | async).skin_colors | capitalizefirst}}</div>
+        <div fxFlex><span class="text-label">Hair Colors: </span>{{(species$ | async).hair_colors | capitalizefirst}}</div>
+        <div fxFlex><span class="text-label">Eye Colors: </span>{{(species$ | async).eye_colors | capitalizefirst}}</div>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxFlexFill fxLayoutAlign="start stretch"
+        class="flex-row">
+        <div fxflex><span class="text-label">Average Lifespan: </span>{{(species$ | async).average_lifespan}}</div>
+        <div fxFlex><span class="text-label">Average Height: </span>{{(species$ | async).average_height}}</div>
+        <div fxFlex><span class="text-label">Home World: </span>
+          <a mat-button [routerLink]="['/planet']" [queryParams]="{url: (species$ | async).homeworld}"
+            class="a-on-the-run" (click)="onNoClick()">{{(species$ | async).homeworld}}</a>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="flex-row">
+        <div fxFlex>
+          <span class="text-label">Residents:</span><br>
+          <div *ngFor="let element of (species$ | async)?.people">
+            <a mat-button [routerLink]="['/people']" [queryParams]="{url: element}"
+              class="a-on-the-run" (click)="onNoClick()">{{element}}</a>
+          </div>
+        </div>
+        <div fxFlex>
+            <span class="text-label">Species:</span><br>
+            <div *ngFor="let element of (species$ | async)?.films">
+              <a mat-button [routerLink]="['/film']" [queryParams]="{url: element}"
+                class="a-on-the-run" (click)="onNoClick()">{{element}}</a>
+            </div>
+          </div>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="date-container">
+        <div fxFlex><span class="text-label">Created: </span>{{(species$ | async).created | date: 'yyyy-MM-dd HH:mm:ss zzzz'}}</div>
+        <div fxFlex><span class="text-label">Edited: </span>{{(species$ | async).edited | date: 'yyyy-MM-dd HH:mm:ss zzzz'}}</div>
+      </div>
+    </div>
+  </section>

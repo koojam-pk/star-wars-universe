@@ -1,0 +1,49 @@
+<section class="starship-container">
+    <div class="spinner-container"  *ngIf="!(this.starship$ | async)">
+      <mat-spinner diameter="50" strokeWidth="6"></mat-spinner>
+    </div>
+    <div *ngIf="(this.starship$ | async)">
+      <a mat-button class="a-on-the-run" (click)="onBackClick()">Back</a>
+      <h3>{{(starship$ | async).name}}</h3>
+      <h4>{{(starship$ | async).model | capitalizefirst}} | {{(starship$ | async).manufacturer}}</h4>
+      <div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxFlexFill fxLayoutAlign="start stretch"
+          class="flex-row">
+          <div fxFlex><span class="text-label">Cost in Credits: </span>{{(starship$ | async).cost_in_credits}}</div>
+          <div fxflex><span class="text-label">Length: </span>{{(starship$ | async).length}}</div>
+          <div fxFlex><span class="text-label">Max Atmosphering Speed: </span>{{(starship$ | async).max_atmosphering_speed}}</div>
+          <div fxFlex><span class="text-label">Crew: </span>{{(starship$ | async).crew}}</div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxFlexFill fxLayoutAlign="start stretch"
+          class="flex-row">
+          <div fxFlex><span class="text-label">Passengers: </span>{{(starship$ | async).passengers}}</div>
+          <div fxFlex><span class="text-label">Cargo Capacity: </span>{{(starship$ | async).cargo_capacity}}</div>
+          <div fxflex><span class="text-label">Consumables: </span>{{(starship$ | async).consumables}}</div>
+          <div fxFlex><span class="text-label">Vehicle Class: </span>{{(starship$ | async).vehicle_class}}</div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="flex-row">
+          <div fxFlex class="no-link"><span class="text-label">URL: </span>{{(starship$ | async).url}}</div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="flex-row">
+          <div fxFlex>
+            <span class="text-label">Pilots:</span><br>
+            <div *ngFor="let element of (starship$ | async).pilots">
+              <a mat-button [routerLink]="['/people']" [queryParams]="{url: element}"
+                class="a-on-the-run">{{element}}</a>
+            </div>
+          </div>
+          <div fxFlex>
+            <span class="text-label">Films:</span><br>
+            <div *ngFor="let element of (starship$ | async).films">
+              <a mat-button [routerLink]="['/film']" [queryParams]="{url: element}"
+                class="a-on-the-run">{{element}}</a>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="flex-row  date-container">
+          <div fxFlex><span class="text-label">Created: </span>{{(starship$ | async).created | date: 'yyyy-MM-dd HH:mm:ss zzzz'}}</div>
+          <div fxFlex><span class="text-label">Edited: </span>{{(starship$ | async).edited | date: 'yyyy-MM-dd HH:mm:ss zzzz'}}</div>
+        </div>
+      </div>
+    </div>
+  </section>

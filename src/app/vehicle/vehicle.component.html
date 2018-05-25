@@ -1,0 +1,49 @@
+<section class="vehicle-container">
+    <div class="spinner-container"  *ngIf="!(vehicle$ | async)">
+      <mat-spinner diameter="50" strokeWidth="6"></mat-spinner>
+    </div>
+    <div *ngIf="(vehicle$ | async)">
+      <a mat-button class="a-on-the-run" (click)="onBackClick()">Back</a>
+      <h3>{{(vehicle$ | async).name}}</h3>
+      <h4>{{(vehicle$ | async).model | capitalizefirst}} | {{(vehicle$ | async).manufacturer}}</h4>
+      <div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxFlexFill fxLayoutAlign="start stretch"
+          class="flex-row">
+          <div fxFlex><span class="text-label">Cost in Credits: </span>{{(vehicle$ | async).cost_in_credits}}</div>
+          <div fxflex><span class="text-label">Length: </span>{{(vehicle$ | async).length}}</div>
+          <div fxFlex><span class="text-label">Max Atmosphering Speed: </span>{{(vehicle$ | async).max_atmosphering_speed}}</div>
+          <div fxFlex><span class="text-label">Crew: </span>{{(vehicle$ | async).crew}}</div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxFlexFill fxLayoutAlign="start stretch"
+          class="flex-row">
+          <div fxFlex><span class="text-label">Passengers: </span>{{(vehicle$ | async).passengers}}</div>
+          <div fxFlex><span class="text-label">Cargo Capacity: </span>{{(vehicle$ | async).cargo_capacity}}</div>
+          <div fxflex><span class="text-label">Consumables: </span>{{(vehicle$ | async).consumables}}</div>
+          <div fxFlex><span class="text-label">Vehicle Class: </span>{{(vehicle$ | async).vehicle_class}}</div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="flex-row">
+          <div fxFlex class="no-link"><span class="text-label">URL: </span>{{(vehicle$ | async).url}}</div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="flex-row">
+          <div fxFlex>
+            <span class="text-label">Pilots:</span><br>
+            <div *ngFor="let element of (vehicle$ | async).pilots">
+              <a mat-button [routerLink]="['/people']" [queryParams]="{url: element}"
+                class="a-on-the-run">{{element}}</a>
+            </div>
+          </div>
+          <div fxFlex>
+            <span class="text-label">Films:</span><br>
+            <div *ngFor="let element of (vehicle$ | async).films">
+              <a mat-button [routerLink]="['/film']" [queryParams]="{url: element}"
+                class="a-on-the-run">{{element}}</a>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="date-container">
+          <div fxFlex><span class="text-label">Created: </span>{{(vehicle$ | async).created | date: 'yyyy-MM-dd HH:mm:ss zzzz'}}</div>
+          <div fxFlex><span class="text-label">Edited: </span>{{(vehicle$ | async).edited | date: 'yyyy-MM-dd HH:mm:ss zzzz'}}</div>
+        </div>
+      </div>
+    </div>
+  </section>

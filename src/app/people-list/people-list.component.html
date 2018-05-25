@@ -1,5 +1,5 @@
 <section class="people-container">
-  <div class="spinner-container"  *ngIf="!(this.allPeople$ | async)">
+  <div class="spinner-container"  *ngIf="!(allPeople$ | async)">
     <mat-spinner diameter="50" strokeWidth="6"></mat-spinner>
   </div>
   <mat-paginator #paginator
@@ -39,27 +39,47 @@
           <mat-card-content>
             <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxFlexFill fxLayoutAlign="start stretch"
               class="flex-row">
-              <div fxFlex><span class="card-label">Height: </span>{{item.height}}</div>
-              <div fxflex><span class="card-label">Mass: </span>{{item.mass}}</div>
-              <div fxFlex><span class="card-label">Eye Color: </span>{{item.eye_color | capitalizefirst}}</div>
-              <div fxFlex><span class="card-label">Skin Color: </span>{{item.skin_color | capitalizefirst}}</div>
-              <div fxFlex><span class="card-label">Hair Color: </span>{{item.hair_color | capitalizefirst}}</div>
+              <div fxFlex><span class="text-label">Height: </span>{{item.height}}</div>
+              <div fxflex><span class="text-label">Mass: </span>{{item.mass}}</div>
+              <div fxFlex><span class="text-label">Eye Color: </span>{{item.eye_color | capitalizefirst}}</div>
+              <div fxFlex><span class="text-label">Skin Color: </span>{{item.skin_color | capitalizefirst}}</div>
+              <div fxFlex><span class="text-label">Hair Color: </span>{{item.hair_color | capitalizefirst}}</div>
             </div>
             <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="flex-row">
-              <div fxFlex><span class="card-label">Home World: </span>{{item.homeworld}}</div>
-              <div fxFlex><span class="card-label">URL: </span>{{item.url}}</div>
+              <div fxFlex><span class="text-label">Home World: </span>
+                <a mat-button (click)="onPlanetClick(item.homeworld)">{{item.homeworld}}</a>
+              </div>
+              <div fxFlex class="no-link"><span class="text-label">URL: </span>{{item.url}}</div>
             </div>
             <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="flex-row">
-              <div fxFlex><span class="card-label">Created: </span>{{item.created | date: 'yyyy-MM-dd HH:mm:ss zzzz'}}</div>
-              <div fxFlex><span class="card-label">Edited: </span>{{item.edited | date: 'yyyy-MM-dd HH:mm:ss zzzz'}}</div>
+              <div fxFlex>
+                <span class="text-label">Films:</span><br>
+                <div *ngFor="let element of item.films">
+                  <a mat-button [routerLink]="['/film']" [queryParams]="{url: element}">{{element}}</a>
+                </div>
+              </div>
+              <div fxFlex>
+                <span class="text-label">Species:</span><br>
+                <a mat-button *ngFor="let element of item.species" (click)="onSpeciesClick(element)">{{element}}</a>
+              </div>
             </div>
             <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="flex-row">
-              <div fxFlex [innerHTML]="flatContent(item.films, 'Films')"></div>
-              <div fxFlex [innerHTML]="flatContent(item.species, 'Species')"></div>
+              <div fxFlex>
+                <span class="text-label">Vehicles:</span><br>
+                <div *ngFor="let element of item.vehicles">
+                  <a mat-button [routerLink]="['/vehicle']" [queryParams]="{url: element}">{{element}}</a>
+                </div>
+              </div>
+              <div fxFlex>
+                <span class="text-label">Starships:</span><br>
+                <div *ngFor="let element of item.starships">
+                  <a mat-button [routerLink]="['/starship']" [queryParams]="{url: element}">{{element}}</a>
+                </div>
+              </div>
             </div>
-            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="flex-row">
-              <div fxFlex [innerHTML]="flatContent(item.vehicles, 'Vehicles')"></div>
-              <div fxFlex [innerHTML]="flatContent(item.starships, 'Starships')"></div>
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="flex-row  date-container">
+              <div fxFlex><span class="text-label">Created: </span>{{item.created | date: 'yyyy-MM-dd HH:mm:ss zzzz'}}</div>
+              <div fxFlex><span class="text-label">Edited: </span>{{item.edited | date: 'yyyy-MM-dd HH:mm:ss zzzz'}}</div>
             </div>
           </mat-card-content>
         </mat-card>

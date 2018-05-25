@@ -11,8 +11,6 @@ $card-bg-color: rgba(255, 255, 255, 0.3);
 $header-bg-color: #05326D;
 
 .mat-spinner {
-  margin-left: auto;
-  margin-right: auto;
   top: 15.63rem;
 }
 
@@ -128,20 +126,31 @@ $header-bg-color: #05326D;
   justify-content: flex-start!important;
 }
 
+a {
+  text-decoration: underline;
+  color: #ccc;
+
+  &:hover,
+  &:active {
+    color: #eee;
+    font-weight: 350;
+    cursor: pointer;
+  }
+}
+
+::ng-deep .cdk-overlay-pane {
+  overflow-y: scroll;
+}
+
 /* Customise Class */
 /* To avoid space appearing when spinner is active */
 .spinner-container {
   height: 0;
+  margin-top: 0;
 }
 
 .mat-cell-show {
   display: none;
-}
-
-.flex-row {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-left: 0.5rem;
 }
 
 @media (min-width: 37.5rem) {

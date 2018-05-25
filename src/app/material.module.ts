@@ -6,6 +6,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   imports: [
@@ -15,7 +17,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatExpansionModule,
     MatInputModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDialogModule,
+    MatIconModule
   ],
   exports: [
     MatTableModule,
@@ -24,7 +28,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatExpansionModule,
     MatInputModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDialogModule,
+    MatIconModule
   ]
 })
 export class MaterialModule {}

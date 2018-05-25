@@ -1,0 +1,69 @@
+<section class="film-container">
+    <div class="spinner-container"  *ngIf="!(this.film$ | async)">
+      <mat-spinner diameter="50" strokeWidth="6"></mat-spinner>
+    </div>
+    <div *ngIf="(this.film$ | async)">
+      <a mat-button class="a-on-the-run" (click)="onBackClick()">Back</a>
+      <h2>{{(film$ | async).title}}</h2>
+      <h3>Episode: {{(film$ | async).episode_id}}</h3>
+      <div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxFlexFill fxLayoutAlign="start stretch"
+          class="flex-row">
+          <div fxFlex><span class="text-label">Opening Crawl:</span><br>
+            <p>{{(film$ | async).opening_crawl}}</p>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxFlexFill fxLayoutAlign="start stretch"
+          class="flex-row">
+          <div fxFlex><span class="text-label">Director: </span>{{(film$ | async).director}}</div>
+          <div fxflex><span class="text-label">Producer: </span>{{(film$ | async).producer}}</div>
+          <div fxFlex><span class="text-label">Release Date: </span>{{(film$ | async).release_date}}</div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="flex-row">
+          <div fxFlex>
+            <span class="text-label">Characters:</span><br>
+            <div *ngFor="let element of (film$ | async).characters">
+              <a mat-button [routerLink]="['/people']" [queryParams]="{url: element}"
+                class="a-on-the-run">{{element}}</a>
+            </div>
+          </div>
+          <div fxFlex>
+            <span class="text-label">Planets:</span><br>
+            <div *ngFor="let element of (film$ | async).planets">
+              <a mat-button [routerLink]="['/planet']" [queryParams]="{url: element}"
+                class="a-on-the-run">{{element}}</a>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="flex-row">
+          <div fxFlex>
+            <span class="text-label">Starships:</span><br>
+            <div *ngFor="let element of (film$ | async).starships">
+              <a mat-button [routerLink]="['/starship']" [queryParams]="{url: element}"
+              class="a-on-the-run">{{element}}</a>
+            </div>
+          </div>
+          <div fxFlex>
+            <span class="text-label">Vehicles:</span><br>
+            <div *ngFor="let element of (film$ | async).vehicles">
+              <a mat-button [routerLink]="['/vehicle']" [queryParams]="{url: element}"
+                class="a-on-the-run">{{element}}</a>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="flex-row">
+          <div fxFlex>
+            <span class="text-label">Species:</span><br>
+            <div *ngFor="let element of (film$ | async).species">
+              <a mat-button [routerLink]="['/species']" [queryParams]="{url: element}"
+                class="a-on-the-run">{{element}}</a>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="date-container">
+          <div fxFlex><span class="text-label">Created: </span>{{(film$ | async).created | date: 'yyyy-MM-dd HH:mm:ss zzzz'}}</div>
+          <div fxFlex><span class="text-label">Edited: </span>{{(film$ | async).edited | date: 'yyyy-MM-dd HH:mm:ss zzzz'}}</div>
+        </div>
+      </div>
+    </div>
+  </section>

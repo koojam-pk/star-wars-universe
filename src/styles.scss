@@ -8,9 +8,55 @@ body {
   font-family: helvetica neue, Helvetica, Arial, sans-serif;
 }
 
+.mat-spinner {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.spinner-container {
+  margin-top: 12.5rem;
+}
+
 /* This class is writtern here due to the some labels are inserted into the DOM during runtime.
  * Due to this situation, those labels are not able to pick up the style setting
  */
-.card-label {
+.text-label {
   color: #aaa;
+}
+
+.flex-row {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.a-on-the-run {
+  text-decoration: underline;
+  color: #ccc;
+
+  &:hover,
+  &:active {
+    color: #eee;
+    font-weight: 350;
+    cursor: pointer;
+  }
+}
+
+// mat-dialog link component
+.close-container {
+  width: 100%;
+  text-align: right;
+
+  &:hover, &:active {
+    cursor: pointer;
+    font-weight: 350;
+  }
+}
+
+.date-container {
+  font-size: 0.7rem;
+}
+
+.no-link:hover {
+  cursor: not-allowed;
 }

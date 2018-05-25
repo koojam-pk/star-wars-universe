@@ -1,0 +1,28 @@
+h2 {
+  font-weight: 200;
+}
+
+.species-dialog-container {
+  font-weight: 200;
+  box-sizing: border-box;
+  // padding: 2rem;
+  font-size: 0.85rem;
+}
+
+.spinner-container {
+  margin-top: 0;
+}
+
+.flex-row {
+  font-weight: 200;
+  font-size: 0.85rem;
+}
+
+.a-on-the-run {
+  color: #777;
+
+  &:hover,
+  &:active {
+    color: #999;
+  }
+}
