@@ -22,20 +22,17 @@ export class PeopleService {
     });
   }
 
-  getPeople(pageIndex: number = 0): Observable<People []> {
+  getPeople(): Observable<People []> {
     let url = this.url;
-    if (pageIndex > 0) {
-      url = encodeURI(url + '/?page=' + (pageIndex + 1).toString());
+    if (this.pageIndex > 0) {
+      url = encodeURI(url + '/?page=' + (this.pageIndex + 1).toString());
     }
-    // console.log(url);
     return this.http.get<any>(url)
       .pipe(
         tap(data => {
-          // console.log('tap:', data);
           this.totalCount.next(data.count);
         })
       , map(data => {
-        // console.log('service:', data);
         return data.results;
       }));
   }

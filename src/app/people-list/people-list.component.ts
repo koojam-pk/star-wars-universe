@@ -23,7 +23,6 @@ export class PeopleListComponent implements OnInit, OnDestroy, AfterViewInit {
   subscription: Subscription;
 
   peopleCount$: Observable<number>;
-  // selection = new SelectionModel<People>(false, []);
 
   step = -1;
   pageIndex = 0;
@@ -37,30 +36,21 @@ export class PeopleListComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit() {
 
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationStart))
-      .subscribe((event: NavigationStart) => {
-        // console.log('trgger:', event.navigationTrigger);
-        if (event.navigationTrigger === 'popstate') {
-          this.pageIndex = this.peopleService.getPageIndex();
-          this.step = this.peopleService.getRowIndex();
-          this.paginator.pageIndex = this.pageIndex;
-          // console.log('page:', this.paginator.pageIndex );
-          // this.allPeople$ = this.peopleService.getPeople(this.paginator.pageIndex);
-          // console.log('paginator', this.paginator);
-          this.allPeople$ = this.peopleService.getPeople(this.paginator.pageIndex);
-          // console.log('all', this.allPeople$);
-        }
-      });
-
-    if (this.peopleService.getPageIndex() === 0) {
-      this.allPeople$ = this.peopleService.getPeople();
+    this.allPeople$ = this.peopleService.getPeople();
       this.subscription = this.peopleService.getTotalPages().subscribe(totalPage => {
         this.peopleCount$ = of(totalPage);
       });
-    } else {
-      // console.log(this.peopleService.getPageIndex());
-    }
+
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationStart))
+      .subscribe((event: NavigationStart) => {
+        if (event.navigationTrigger === 'popstate') {
+          this.pageIndex = this.peopleService.getPageIndex();
+          this.step = this.peopleService.getRowIndex();
+          this.allPeople$ = this.peopleService.getPeople();
+          this.paginator.pageIndex = this.pageIndex;
+        }
+    });
   }
 
   ngOnDestroy() {
@@ -75,9 +65,9 @@ export class PeopleListComponent implements OnInit, OnDestroy, AfterViewInit {
           tap(() => {
             this.step = -1;
             this.peopleService.setRowIndex(this.step);
-            this.pageIndex = this.paginator.pageIndex + 1;
+            this.pageIndex = this.paginator.pageIndex;
             this.peopleService.setPageIndex(this.pageIndex);
-            return this.allPeople$ = this.peopleService.getPeople(this.paginator.pageIndex);
+            return this.allPeople$ = this.peopleService.getPeople();
           })
       )
       .subscribe();

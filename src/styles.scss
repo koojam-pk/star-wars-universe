@@ -60,3 +60,11 @@ body {
 .no-link:hover {
   cursor: not-allowed;
 }
+
+@media (min-width: 93.75rem) {
+  main {
+    max-width: 93.75rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

@@ -3,7 +3,7 @@
     <mat-spinner diameter="50" strokeWidth="6"></mat-spinner>
   </div>
   <mat-paginator #paginator
-    [length]="peopleCount$ | async" [pageIndex]="0" [pageSize]="10">
+    [length]="peopleCount$ | async" [pageIndex]="pageIndex" [pageSize]="10" >
   </mat-paginator>
   <mat-accordion displayMode="flat" multi class="mat-table">
     <section matSort class="mat-elevation-z2 mat-header-row">
