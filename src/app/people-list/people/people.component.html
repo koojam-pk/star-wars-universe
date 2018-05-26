@@ -1,4 +1,4 @@
-<section class="people-container">
+<section class="page-container">
   <div class="spinner-container"  *ngIf="!(people$ | async)">
     <mat-spinner diameter="50" strokeWidth="6"></mat-spinner>
   </div>
@@ -32,7 +32,8 @@
         </div>
         <div fxFlex>
           <span class="text-label">Species:</span><br>
-          <a mat-button *ngFor="let element of (people$ | async).species" class="a-on-the-run"
+          <a mat-button *ngFor="let element of (people$ | async).species"
+            class="a-on-the-run"
             (click)="onSpeciesClick(element)">{{element}}</a>
         </div>
       </div>

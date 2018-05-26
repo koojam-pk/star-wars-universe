@@ -1,11 +1,9 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
-import { Location } from '@angular/common';
 import { Router, NavigationStart } from '@angular/router';
 import { Observable, Subscription, of } from 'rxjs';
-import { tap, map, takeWhile, startWith, filter } from 'rxjs/operators';
+import { tap, filter } from 'rxjs/operators';
 import { MatPaginator } from '@angular/material';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ObservableMedia } from '@angular/flex-layout';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 import { PlanetDialogComponent } from './../planet/planet-dialog/planet-dialog.component';
 import { SpeciesDialogComponent } from './../species/species-dialog/species-dialog.component';
@@ -31,8 +29,8 @@ export class PeopleListComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private dialog: MatDialog, private router: Router, private observableMedia: ObservableMedia,
-    private location: Location, private peopleService: PeopleService) { }
+  constructor(private dialog: MatDialog, private router: Router,
+    private peopleService: PeopleService) { }
 
   ngOnInit() {
 

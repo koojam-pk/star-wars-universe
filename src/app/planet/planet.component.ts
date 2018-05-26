@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Injectable } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -15,9 +15,6 @@ import { PlanetService } from './planet.service';
 export class PlanetComponent implements OnInit {
   planet$: Observable<Planet>;
 
-  /* constructor(private router: Router, private planetService: PlanetService,
-    public dialogRef: MatDialogRef<PlanetComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { } */
   constructor(private location: Location, private route: ActivatedRoute,
       private planetService: PlanetService) { }
 

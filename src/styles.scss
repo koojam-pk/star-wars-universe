@@ -8,6 +8,10 @@ body {
   font-family: helvetica neue, Helvetica, Arial, sans-serif;
 }
 
+body, h1, h2, h3, h4, h5, h6 {
+  font-weight: 200;
+}
+
 .mat-spinner {
   margin-left: auto;
   margin-right: auto;
@@ -17,30 +21,10 @@ body {
   margin-top: 12.5rem;
 }
 
-/* This class is writtern here due to the some labels are inserted into the DOM during runtime.
- * Due to this situation, those labels are not able to pick up the style setting
- */
-.text-label {
-  color: #aaa;
+.spinner-modal-container {
+  margin-top: 0;
 }
 
-.flex-row {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-left: 0.5rem;
-}
-
-.a-on-the-run {
-  text-decoration: underline;
-  color: #ccc;
-
-  &:hover,
-  &:active {
-    color: #eee;
-    font-weight: 350;
-    cursor: pointer;
-  }
-}
 
 // mat-dialog link component
 .close-container {
@@ -57,8 +41,81 @@ body {
   font-size: 0.7rem;
 }
 
+.page-container {
+  color: #eee;
+  box-sizing: border-box;
+  padding: 2rem;
+
+  h4 {
+    color: #ccc;
+  }
+
+  .flex-row {
+    font-size: 0.85rem;
+  }
+}
+
+.dialog-container {
+  box-sizing: border-box;
+  font-size: 0.85rem;
+}
+
 .no-link:hover {
   cursor: not-allowed;
+}
+
+.button-link {
+  background: transparent;
+  color: #ddd;
+  border: none;
+  font-size: 0.85rem;
+  text-decoration: underline;
+  color: #ccc;
+
+  &:hover,
+  &:active {
+    color: #eee;
+    font-weight: 350;
+    cursor: pointer;
+  }
+}
+
+.a-on-the-run {
+  text-decoration: underline;
+  color: #ccc;
+
+  &:hover,
+  &:active {
+    color: #eee;
+    font-weight: 350;
+    cursor: pointer;
+  }
+}
+
+.a-on-the-run-modal {
+  color: #777;
+
+  &:hover,
+  &:active {
+    color: #999;
+  }
+}
+
+/* This class is writtern here due to the some labels are inserted into the DOM during runtime.
+ * Due to this situation, those labels are not able to pick up the style setting
+ */
+ .text-label {
+  color: #aaa;
+}
+
+.flex-row {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.flex-modal-row {
+  font-size: 0.85rem;
 }
 
 @media (min-width: 93.75rem) {
