@@ -93,7 +93,6 @@ export class PeopleListComponent implements OnInit, OnDestroy, AfterViewInit {
       height: 'auto',
       minHeight: '6.25rem',
       width: '37.5rem',
-      disableClose: false,
       data: { url: url }
     });
   }
